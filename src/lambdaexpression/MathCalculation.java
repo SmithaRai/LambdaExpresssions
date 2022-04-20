@@ -4,7 +4,12 @@ import java.util.Scanner;
 
 interface math
    {
-	void calculate(int a , int b);
+	int calculate(int a , int b);
+	
+	static void Result(int a , int b , math obj)
+	{
+		System.out.println("Result  : "+obj.calculate(a,b));
+	}
    }
 public class MathCalculation {
 	
@@ -14,13 +19,13 @@ public class MathCalculation {
 		
 		System.out.println("******************MATH CALCULATIONS USING LAMBDA**************************");
      
-		math add = (a,b)->System.out.println("addition : "+(a+b));
-		math subtract = (a,b)->System.out.println("subtraction : "+(a-b));
-		math division = (a,b)->System.out.println("division : "+(a/b));
+		math add = (a,b)->(a+b); 
+		math subtract = (a,b)->a-b; 
+		math division = (a,b)-> (a/b); 
 		
-		add.calculate(3, 4);
-		subtract.calculate(10, 5);
-		division.calculate(50, 5);
+		math.Result(5, 4, add);
+		math.Result(5, 4, subtract);
+		math.Result(5, 4, division);
 	}
 
 }
