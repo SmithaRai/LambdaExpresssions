@@ -3,45 +3,43 @@ import java.util.regex.*;
 
 public class UserRegistration {
 
-	 private static final String PASSWORD_RULE1 = "^[a-zA-Z0-9_-]{8,}$";
-	 private static final String PASSWORD_RULE2 = "^[a-zA-Z0-9_-]{8,}[A-Z]+$";
-	 private static final String PASSWORD_RULE3 = "^[a-zA-Z0-9_-]{8,}[A-Z]+[0-9]+$";
-	 private static final String PASSWORD_RULE4 = "^[a-zA-Z0-9_-]{8,}[A-Z]+[0-9]+[! @#&()]{1}$";
-	 private static final String EMAIID_SAMPLES = "^[a-zA-Z.+0-9_-]+[@]{1}[a-zA-Z0-9]+[.]{1}[a-zA-Z,]{2,}[.,a-zA-Z]?$";
+	  private static final String FIRST_NAME_PATTERN = "^[A-Z]{1}[a-z]{2,}$";
+	  private static final String LAST_NAME_PATTERN = "^[A-Z]{1}[a-z]{2,}$";
+	  private static final String EMAIL_ID_PATTERN = "^[a-zA-Z0-9_-]+(?:\\.[a-zA-Z0-9_-]+)*@[a-zA-Z0-9_-]+\\.[a-zA-Z0-9_-]+(?:\\.[a-zA-Z0-9_-]+)*$";
+	  private static final String PHONE_NUMBER = "^[9][1]{0,1}\\s[0-9]{10}";
+	  private static final String PASSWORD = "^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_-])[a-zA-Z0-9].{8,}";
 	 
-	 public boolean validatepassword_rule1 (String pwd_rule1){
-         
-         Pattern pattern = Pattern.compile(PASSWORD_RULE1);
-         return pattern.matcher(pwd_rule1).matches();
 	  
-             }
-	 
-     public boolean validatepassword_rule2 (String pwd_rule2){
-         
-         Pattern pattern = Pattern.compile(PASSWORD_RULE2);
-         return pattern.matcher(pwd_rule2).matches();
+	  public boolean validateFirstName (String fname){
+	
+          Pattern pattern = Pattern.compile(FIRST_NAME_PATTERN);
+          return pattern.matcher(fname).matches();
 	  
-             }
-
-     public boolean validatepassword_rule3 (String pwd_rule3){
+              }
     
-    Pattern pattern = Pattern.compile(PASSWORD_RULE3);
-    return pattern.matcher(pwd_rule3).matches();
- 
+      public boolean validateLastName (String lname){
+    
+              Pattern pattern = Pattern.compile(LAST_NAME_PATTERN);
+              return pattern.matcher(lname).matches();
+           }
+      
+      public boolean validateEmailId (String emailid){
+        
+               Pattern pattern = Pattern.compile(EMAIL_ID_PATTERN);
+               return pattern.matcher(emailid).matches();
         }
-
-
-     public boolean validatepassword_rule4 (String pwd_rule4){
     
-    Pattern pattern = Pattern.compile(PASSWORD_RULE4);
-    return pattern.matcher(pwd_rule4).matches();
- 
+      public boolean validatePhoneNumber (String pnumber){
+          
+                Pattern pattern = Pattern.compile(PHONE_NUMBER);
+               return pattern.matcher(pnumber).matches();
+	  
         }
-
-     public boolean validate_emailid_samples (String email_samples){
     
-    Pattern pattern = Pattern.compile(EMAIID_SAMPLES);
-    return pattern.matcher(email_samples).matches();
+      public boolean validatepassword (String password){
+        
+             Pattern pattern = Pattern.compile(PASSWORD);
+             return pattern.matcher(password).matches();
 	 }              
 
 }
