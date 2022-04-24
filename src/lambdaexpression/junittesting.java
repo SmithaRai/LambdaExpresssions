@@ -1,98 +1,61 @@
 package lambdaexpression;
 
+import java.util.Arrays;
+import java.util.Collection;
 import org.junit.Test;
+
 import java.util.Scanner;
 import java.util.regex.Pattern;
 import org.junit.Assert;
+import org.junit.Before;
+import org.junit.runners.Parameterized;
+import org.junit.runners.Parameterized.Parameters;
+import org.junit.runner.RunWith;
 
+@RunWith(Parameterized.class)
 public class junittesting {
-
-	//HAPPY TEST CASES
-    @Test
-	  public void valid_firstname_returntrue() {
-			
-    	UserRegistration obj = new UserRegistration ();
-			boolean result = obj.validateFirstName("Smitha");
-			Assert.assertEquals(true , result);
-			
-		}
-		
-		@Test
-		public void valid_lastname_returntrue() {
-			
-			UserRegistration	obj = new UserRegistration();
-			boolean result = obj.validateLastName("Smitha");
-			Assert.assertEquals(true , result);
-		}
-
-		@Test
-		public void valid_emailid_returntrue() {
-			
-			UserRegistration obj = new UserRegistration();
-			boolean result = obj.validateEmailId("smitha@gmail.com");
-			Assert.assertEquals(true , result);
-		
-		}
-		
-		@Test
-		public void valid_phonenumber_returntrue() {
-			
-			UserRegistration obj = new UserRegistration();
-			boolean result = obj.validatePhoneNumber("91 2341736897");
-			Assert.assertEquals(true , result);
-		}
-		
-		public void valid_password_returntrue() {
-			
-			UserRegistration obj = new UserRegistration();
-			boolean result = obj.validatepassword("Smitha@1");
-			Assert.assertEquals(true , result);
-		}
+  
+	private String emailid ;
+	private Boolean expectedResult;
 	
-		//SAD TEST CASES
-		
-		@Test
-		  public void valid_firstname_returnfalse() {
-				
-			UserRegistration obj = new UserRegistration ();
-				boolean result = obj.validateFirstName("Smitha ");
-				Assert.assertEquals(true , result);
-				
-			}
-			
-			@Test
-			public void valid_lastname_returnfalse() {
-				
-				UserRegistration obj = new UserRegistration();
-				boolean result = obj.validateLastName("rai");
-				Assert.assertEquals(true , result);
-			}
-
-			@Test
-			public void valid_emailid_returnfalse() {
-				
-				UserRegistration obj = new UserRegistration();
-				boolean result = obj.validateEmailId("smitha.@gmail.com");
-				Assert.assertEquals(true , result);
-			
-			}
-			
-			@Test
-			public void valid_phonenumber_returnfalse() {
-				
-				UserRegistration obj = new UserRegistration();
-				boolean result = obj.validatePhoneNumber("91 42341736897");
-				Assert.assertEquals(true , result);
-			}
-
-			@Test
-             public void valid_password_returnfalse() {
-				
-				UserRegistration obj = new UserRegistration();
-				boolean result = obj.validatepassword("sA!@7");
-				Assert.assertEquals(true , result);
-			}
-		
+	UserRegistration obj;
+	
+	@Before
+	public void setup()
+	{
+		 obj = new UserRegistration();	
+	}
+	
+	public  junittesting(Boolean expectedResult , String emailid ) {
+	     this.emailid = emailid ;
+	     this.expectedResult = expectedResult;
+	    }
+	
+	
+	  @Parameterized.Parameters
+	   public static Collection <Object[]> Emailid_samples() {
+	      Object[][] data = new Object[][]{
+	         { true,"abc@yahoo.com," },
+	         { true,"abc-100@yahoo.com," },
+	         { true,"abc.100@yahoo.com"},
+	         { true,"abc111@abc.com,"},
+	         { true,"abc-100@abc.net,"},
+	         { true,"abc.100@abc.com.au"},
+	         { true,"abc@1.com,"},
+	         { true,"abc@gmail.com.com"},
+	         { true,"abc+100@gmail.com"}     
+	      };
+	      return Arrays.asList(data);
 	}
 
 
+	@Test
+	public void test_emailid_samples() {
+		
+		//UserRegistration obj = new UserRegistration();
+		System.out.println("");
+		boolean result = obj.validate_emailid_samples(emailid);
+		Assert.assertEquals( expectedResult, result);
+	
+	}
+}
