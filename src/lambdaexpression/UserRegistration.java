@@ -2,6 +2,10 @@ package lambdaexpression;
 import java.util.regex.*;
 import java.util.Scanner;
 
+@FunctionalInterface
+ interface validate {
+	public boolean compute(String value);
+ }
 public class UserRegistration {
 
 	  private static final String FIRST_NAME_PATTERN = "^[A-Z]{1}[a-z]{2,}$";
@@ -10,58 +14,43 @@ public class UserRegistration {
 	  private static final String PHONE_NUMBER = "^[9][1]{0,1}\\s[0-9]{10}";
 	  private static final String PASSWORD = "^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_-])[a-zA-Z0-9].{8,}";
 	 
-	  
-	  public boolean validateFirstName (String fname) throws CustomException {
+	  validate Fname =(fname)  ->{
 	          
                   Pattern pattern = Pattern.compile(FIRST_NAME_PATTERN);
                   boolean result = pattern.matcher(fname).matches();
-                  if (result == false)
-                  throw new CustomException("error");
-                  else
-                	  return result ;
-	          }
+                   return result ;
+
+	         };
   
           
     
-     public boolean validateLastName (String lname) throws CustomException{
+	         validate Lname = (lname)-> {
     
               Pattern pattern = Pattern.compile(LAST_NAME_PATTERN);
               boolean result = pattern.matcher(lname).matches();
-              if (result == false)
-               throw new CustomException("error");
-                else
                return result ;
-         }
+         };
       
-      public boolean validateEmailId (String emailid)throws CustomException{
+      validate EmailId = (emailid)->{
         
                Pattern pattern = Pattern.compile(EMAIL_ID_PATTERN);
                boolean result = pattern.matcher(emailid).matches();
-               if (result == false)
-                   throw new CustomException("error");
-                    else
                    return result ;
-        }
+        };
     
-      public boolean validatePhoneNumber (String pnumber)throws CustomException{
+      validate PhoneNumber = (pnumber)->{
           
                 Pattern pattern = Pattern.compile(PHONE_NUMBER);
                 boolean result = pattern.matcher(pnumber).matches();
-                if (result == false)
-                    throw new CustomException("error");
-                     else
                     return result ;
-        }
+        };
     
-      public boolean validatepassword (String password)throws CustomException{
+     validate password = (String password) ->{
         
              Pattern pattern = Pattern.compile(PASSWORD);
              boolean result = pattern.matcher(password).matches();
-             if (result == false)
-                 throw new CustomException("error");
-                  else
                  return result ;
-            }
+            };
       
     	  Scanner in = new Scanner(System.in);
   
